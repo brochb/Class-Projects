@@ -18,13 +18,13 @@ var questions = [
         ]
     },
     {
-        inquiry: "Do you like it?",
+        inquiry: "How is it?",
         correct: "Yes",
         possible: [
-            "Yes",
-            "No ",
-            "No ",
-            "No "
+            "Well",
+            "Boo ",
+            "Boo ",
+            "Boo "
         ]
     },
     {
@@ -58,20 +58,33 @@ var questions = [
         ]
     }]
 
+function highScores() {
+    // get number of answers correct from the document
+    // alert("Your score is +  'score' ")
+    // localStorage.setItem("highscore")
+    // localStorage.setItem("initials")
+
+}
 // The Main Function of the Program
 function startQuiz() {
     var currentQuestionIndex = 0;
 
-    function verification() {
-        if (questions.possible = questions.correct) {
-            console.log("Correct!")
-            if (currentQuestionIndex <4) {
-                currentQuestionIndex ++
-            }
+    function verification(selectedAnswer) {
+        if (selectedAnswer === questions[currentQuestionIndex].correct) {
+            console.log("Correct!");
+            currentQuestionIndex ++
+            console.log(currentQuestionIndex)
+            // if (currentQuestionIndex < currentQuestionIndex.length) {
+            //     currentQuestionIndex ++
+            // } else if (currentQuestionIndex === currentQuestionIndex.length) {
+            //     stopTimer()
+            //     highScores()
+            // }
         } else {
-            console.log("Incorrect! Please Try Again!")
+            console.log("Incorrect! Please Try Again!");
         }
     }
+
 
     function displayQuestion() {
 
@@ -84,7 +97,7 @@ function startQuiz() {
         possible1.appendChild(button1);
         button1.textContent = "Select";
         button1.addEventListener("click", function () { 
-            verification();
+            verification(question.possible[0]);
         });
 
         possible2.textContent = question.possible[1];
@@ -92,7 +105,7 @@ function startQuiz() {
         possible2.appendChild(button2);
         button2.textContent = "Select";
         button2.addEventListener("click", function () {
-            verification();
+            verification(question.possible[1]);
         });
 
         possible3.textContent = question.possible[2];
@@ -100,7 +113,7 @@ function startQuiz() {
         possible3.appendChild(button3);
         button3.textContent = "Select";
         button3.addEventListener("click", function () {
-            verification();
+            verification(question.possible[2]);
         });
 
 
@@ -109,7 +122,7 @@ function startQuiz() {
         possible4.appendChild(button4);
         button4.textContent = "Select";
         button4.addEventListener("click", function () {
-            verification();
+            verification(question.possible[3]);
         });         
     };
 
@@ -126,7 +139,11 @@ function startQuiz() {
         }, 1000);
     };
 
-    // startTimer();
+    function stopTimer() {
+        clearInterval(interval);
+    }
+
+    startTimer();
     displayQuestion();
 }
 
