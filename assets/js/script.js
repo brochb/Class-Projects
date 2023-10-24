@@ -92,7 +92,6 @@ function startQuiz() {
         }
     }
 
-
     function displayQuestion() {
 
         let question = questions[currentQuestionIndex];
