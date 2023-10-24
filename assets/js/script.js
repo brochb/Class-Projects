@@ -6,64 +6,69 @@ var possible1 = document.querySelector("#possible1")
 var possible2 = document.querySelector("#possible2")
 var possible3 = document.querySelector("#possible3")
 var possible4 = document.querySelector("#possible4")
+var score = 0
+
 var questions = [
     {
-        inquiry: "Do you like it?",
-        correct: "Yes",
+        inquiry: "WHhat can I do to improve my personal life?",
+        correct: "Examine my personal behavior, and develop changes based on who I want to be.",
         possible: [
-            "Yes",
-            "No ",
-            "No ",
-            "No "
+            "Nothing, I'm good enough as I am.",
+            "Continue doing what I'm doing now without any changes or improvements.",
+            "Examine my personal behavior, and develop changes based on who I want to be.",
+            "Be consumed by media."
         ]
     },
     {
-        inquiry: "How is it?",
-        correct: "Yes",
+        inquiry: "What insights have you gained from being alive?",
+        correct: "Introspection can reveal secrets about ones self that allow you to reflect with improved perception.",
         possible: [
-            "Well",
-            "Boo ",
-            "Boo ",
-            "Boo "
+            "None, because existence is a lie.",
+            "Introspection can reveal secrets about ones self that allow you to reflect with improved perception.",
+            "Meaning in reality is fools errand, bent on inflicting as much suffering on ones self as possible.",
+            "Love is dead."
         ]
     },
     {
-        inquiry: "Do you like it?",
+        inquiry: "Is the quiz difficult so far?",
         correct: "Yes",
         possible: [
             "Yes",
-            "No ",
-            "No ",
-            "No "
+            "It shouldn't be.",
+            "Nothing is hard if you put your mind to it.",
+            "No"
         ]
     },
     {
-        inquiry: "Do you like it?",
-        correct: "Yes",
+        inquiry: "Has today been ruined by a misshapenstance this morning?",
+        correct: "Only if I allow the emotions I experienced to echo throughout the rest of my experiences today.",
         possible: [
+            "Figuratively speaking, yes.",
             "Yes",
-            "No ",
-            "No ",
-            "No "
+            "Only if I allow the emotions I experienced to echo throughout the rest of my experiences today.",
+            "No"
         ]
     },
     {
-        inquiry: "Do you like it?",
-        correct: "Yes",
+        inquiry: "What is the expected response to this quiz?",
+        correct: "For the user to become enriched with the ability to critically examine themselves in a way that will provide self improvement.",
         possible: [
-            "Yes",
-            "No ",
-            "No ",
-            "No "
+            "For the user to become emburdened with the weight of realities finite nature.",
+            "To create a religion of the users.",
+            "For the user to become enriched with the ability to critically examine themselves in a way that will provide self improvement.",
+            "To allow the user to become lesser then he is now, ensnaring his mind to cause"
         ]
     }]
 
 function highScores() {
-    // get number of answers correct from the document
-    // alert("Your score is +  'score' ")
-    // localStorage.setItem("highscore")
-    // localStorage.setItem("initials")
+    var userInitials = prompt("Enter your initials:");
+    var userScore = score;
 
+    // Store the user's initials and score in localStorage
+    localStorage.setItem("userInitials", userInitials);
+    localStorage.setItem("userScore", userScore);
+
+    // Add logic for redirect to high-scores.html
 }
 // The Main Function of the Program
 function startQuiz() {
@@ -72,16 +77,19 @@ function startQuiz() {
     function verification(selectedAnswer) {
         if (selectedAnswer === questions[currentQuestionIndex].correct) {
             console.log("Correct!");
-            currentQuestionIndex ++
-            console.log(currentQuestionIndex)
-            // if (currentQuestionIndex < currentQuestionIndex.length) {
-            //     currentQuestionIndex ++
-            // } else if (currentQuestionIndex === currentQuestionIndex.length) {
-            //     stopTimer()
-            //     highScores()
-            // }
+            score++;
+            console.log("Score: " + score);
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                stopTimer();
+                highScores();
+            }
         } else {
             console.log("Incorrect! Please Try Again!");
+            // Implement logic to deduct time for incorrect answers
         }
     }
 
@@ -126,9 +134,11 @@ function startQuiz() {
         });         
     };
 
+    let interval;
+
     function startTimer() {
         let seconds = 45;
-        const interval = setInterval(function () {
+        interval = setInterval(function () {
             if (seconds === 0) {
                 clearInterval(interval);
                 alert("Time's Up!!!");
@@ -146,9 +156,6 @@ function startQuiz() {
     startTimer();
     displayQuestion();
 }
-
-
-
 
 // Global Event Listeners
 startButton.addEventListener("click", function () {
