@@ -67,8 +67,7 @@ function highScores() {
     // Store the user's initials and score in localStorage
     localStorage.setItem("userInitials", userInitials);
     localStorage.setItem("userScore", userScore);
-
-    // Add logic for redirect to high-scores.html
+    window.location.href = "high-scores.html"
 }
 // The Main Function of the Program
 function startQuiz() {
