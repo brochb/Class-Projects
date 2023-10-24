@@ -10,7 +10,7 @@ var score = 0
 
 var questions = [
     {
-        inquiry: "WHhat can I do to improve my personal life?",
+        inquiry: "Wh    at can I do to improve my personal life?",
         correct: "Examine my personal behavior, and develop changes based on who I want to be.",
         possible: [
             "Nothing, I'm good enough as I am.",
@@ -73,10 +73,14 @@ function highScores() {
 function startQuiz() {
     var currentQuestionIndex = 0;
     let interval;
+    let seconds = 45;
+    const timePenalty = 5
     var separators = document.querySelectorAll(".separator");
     separators.forEach(function (separator) {
         separator.style.display = "block";
     });
+    const salutationsSection = document.getElementById("salutations");
+    salutationsSection.style.display = "none";
 
 
     function verification(selectedAnswer) {
@@ -94,7 +98,7 @@ function startQuiz() {
             }
         } else {
             console.log("Incorrect! Please Try Again!");
-            // Implement logic to deduct time for incorrect answers
+            seconds -= timePenalty;
         }
     }
 
@@ -103,12 +107,12 @@ function startQuiz() {
         let question = questions[currentQuestionIndex];
 
         inquiry.textContent = question.inquiry;
-        
+
         possible1.textContent = question.possible[0];
         let button1 = document.createElement("button");
         possible1.appendChild(button1);
         button1.textContent = "Select";
-        button1.addEventListener("click", function () { 
+        button1.addEventListener("click", function () {
             verification(question.possible[0]);
         });
 
@@ -135,16 +139,18 @@ function startQuiz() {
         button4.textContent = "Select";
         button4.addEventListener("click", function () {
             verification(question.possible[3]);
-        });         
+        });
     };
 
-        function startTimer() {
-        let seconds = 45;
+    function startTimer() {
+        const timer = document.getElementById("timer");
+
         interval = setInterval(function () {
             if (seconds === 0) {
                 clearInterval(interval);
                 alert("Time's Up!!!");
-            }            
+                highScores()
+            }
             console.log(seconds);
             timer.textContent = "Seconds Remaining: " + seconds;
             seconds--;
