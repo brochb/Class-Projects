@@ -40,3 +40,7 @@ li {
     text-align: center;
     margin: 5px 0;
 }
+
+.separator {
+    display: none;
+}

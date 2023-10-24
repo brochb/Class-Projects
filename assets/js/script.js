@@ -72,6 +72,12 @@ function highScores() {
 // The Main Function of the Program
 function startQuiz() {
     var currentQuestionIndex = 0;
+    let interval;
+    var separators = document.querySelectorAll(".separator");
+    separators.forEach(function (separator) {
+        separator.style.display = "block";
+    });
+
 
     function verification(selectedAnswer) {
         if (selectedAnswer === questions[currentQuestionIndex].correct) {
@@ -132,9 +138,7 @@ function startQuiz() {
         });         
     };
 
-    let interval;
-
-    function startTimer() {
+        function startTimer() {
         let seconds = 45;
         interval = setInterval(function () {
             if (seconds === 0) {
