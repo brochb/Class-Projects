@@ -10,7 +10,7 @@ var score = 0
 
 var questions = [
     {
-        inquiry: "Wh    at can I do to improve my personal life?",
+        inquiry: "What can I do to improve my personal life?",
         correct: "Examine my personal behavior, and develop changes based on who I want to be.",
         possible: [
             "Nothing, I'm good enough as I am.",
