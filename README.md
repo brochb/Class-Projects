@@ -20,7 +20,7 @@
   You are certainly welcome to clone the repository into your local machine, and open with a live server in code.
 
   ## Usage
-  Simplay navigate to the deployed github page, and run the quiz!<br>
+  Simply navigate to the deployed github page, and run the quiz!<br>
   Questions are designed to help you start searching yourself for meaning like this question here<br>
   ![image](https://github.com/brochb/theIncredibleQuiz/assets/39662430/a8312c79-e6a4-4be9-80b7-4df0d814239c)
 
